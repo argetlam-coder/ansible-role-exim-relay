@@ -21,8 +21,8 @@
     path: "{{ exim_relay_spool_path }}"
     state: directory
     mode: "0750"
-    owner: "{{ exim_relay_container_user_uid }}"
-    group: "{{ exim_relay_container_user_gid }}"
+    owner: "{{ exim_relay_container_user_host_uid }}"
+    group: "{{ exim_relay_container_user_host_gid }}"
     recurse: true
 
 - name: Ensure exim-relay environment variables file created
@@ -37,8 +37,8 @@
     content: "{{ exim_relay_dkim_privkey_contents }}"
     dest: "{{ exim_relay_dkim_privkey_path }}"
     mode: "0640"
-    owner: "{{ exim_relay_container_user_uid }}"
-    group: "{{ exim_relay_container_user_gid }}"
+    owner: "{{ exim_relay_container_user_host_uid }}"
+    group: "{{ exim_relay_container_user_host_gid }}"
   when: exim_relay_dkim_privkey_contents != "" and not exim_relay_relay_use|bool
   register: exim_relay_dkim_result
 

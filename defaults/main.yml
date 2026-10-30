@@ -36,6 +36,14 @@ exim_relay_container_image_registry_prefix_upstream_default: "ghcr.io/"
 exim_relay_container_user_uid: 100
 exim_relay_container_user_gid: 101
 
+# Controls the owner of the files that the container uses (spool, DKIM private key) on the host.
+# Only needs to differ from `exim_relay_container_user_uid` when the container's IDs map to different IDs on the host.
+exim_relay_container_user_host_uid: "{{ exim_relay_container_user_uid }}"
+
+# Controls the group of the files that the container uses (spool, DKIM private key) on the host.
+# Only needs to differ from `exim_relay_container_user_gid` when the container's IDs map to different IDs on the host.
+exim_relay_container_user_host_gid: "{{ exim_relay_container_user_gid }}"
+
 # The base container network. It will be auto-created by this role if it doesn't exist already.
 exim_relay_container_network: "{{ exim_relay_identifier }}"
 
